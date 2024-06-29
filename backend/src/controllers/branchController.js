@@ -6,19 +6,6 @@ async function listBranches(req, res) {
     res.status(200).json(branches);
 }
 
-async function addBranch(req, res) {
-    const { name, full_address, latitude, longitude, phone } = req.body;
-    const branch = await client.branch.create({
-        data: {
-            name,
-            full_address,
-            latitude,
-            longitude,
-            phone
-        }
-    });
-    res.status(201).json(branch);
-}
 
 async function editBranchDetails(req, res) {
     const { id } = req.params;
@@ -50,7 +37,6 @@ async function removeBranch(req, res) {
 
 module.exports = {
     listBranches,
-    addBranch,
     editBranchDetails,
     removeBranch
 }
