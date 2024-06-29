@@ -16,13 +16,14 @@ app.use(cors());
 app.use(express.json());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-console.log(branchRouter)
+
 // Routers
 app.use('/branches', branchRouter);
 app.use('/users', userRouter);
 
 // Middlewares
 app.use(errorMiddleware);
+
 
 app.listen(port, () => {
   console.log(`[SERVER]: Backend is running on ${port}`)
