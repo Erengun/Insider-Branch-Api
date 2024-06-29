@@ -1,0 +1,32 @@
+datasource db {
+    provider = "mysql"
+    url      = env("DATABASE_URL")
+}
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+enum Role {
+    USER
+    ADMIN
+}
+
+model User {
+    id       Int    @id @default(autoincrement())
+    name     String
+    email    String @unique
+    role     Role
+    Branch   Branch @relation(fields: [branchId], references: [id])
+    branchId Int
+}
+
+model Branch {
+    id           Int     @id @default(autoincrement())
+    name         String
+    full_address String
+    latitude     Decimal @db.Decimal(8, 6)
+    longitude    Decimal @db.Decimal(9, 6)
+    phone        String
+    users        User[]
+}
