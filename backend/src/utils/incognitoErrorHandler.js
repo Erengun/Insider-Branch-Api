@@ -1,5 +1,7 @@
 /**
  * Mapping of error codes to error messages and HTTP status codes.
+ * Used to standardize error responses from the Incognito service.
+ * https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_SignUp.html#API_SignUp_Errors
  *
  * @type {Object}
  */
