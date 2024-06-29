@@ -2,13 +2,13 @@ const express = require('express');
 const client = require('../db-client');
 const logger = require("../utils/logger");
 const AmazonCognitoIdentity = require('amazon-cognito-identity-js');
-const handleError = require('../utils/errorHandler');
+const handleError = require('../utils/incognitoErrorHandler');
 
 async function login(req, res) {
     const { email, password } = req.body;
 
     const authenticationDetails = new AmazonCognitoIdentity.AuthenticationDetails({
-        Email: email,
+        Username: email,
         Password: password,
     });
 
@@ -18,10 +18,9 @@ async function login(req, res) {
     });
 
     const userData = {
-        Email: email,
+        Username: email,
         Pool: userPool,
     };
-
     const cognitoUser = new AmazonCognitoIdentity.CognitoUser(userData);
 
     await new Promise((resolve, reject) => {
@@ -40,9 +39,41 @@ async function login(req, res) {
     })
 }
 
+async function confirmUser(req, res) {
+    const { email, code } = req.body;
+
+    const userPool = new AmazonCognitoIdentity.CognitoUserPool({
+        UserPoolId: process.env.COGNITO_USER_POOL_ID,
+        ClientId: process.env.COGNITO_CLIENT_ID,
+    });
+
+    const userData = {
+        Username: email,
+        Pool: userPool,
+    };
+    const cognitoUser = new AmazonCognitoIdentity.CognitoUser(userData);
+
+    await new Promise((resolve, reject) => {
+        cognitoUser.confirmRegistration(code, true, (err, result) => {
+            if (err) {
+                return reject(handleError(err));
+            }
+            if (result) {
+                res.status(200).json({ message: 'User confirmed successfully', status: 200 });
+                return resolve();
+            }
+
+            reject({
+                message: "User couldn't confirm",
+                status: 500
+            })
+        });
+    })
+}
+
 async function register(req, res) {
     // TODO: get other user informations
-    const { email, password } = req.body;
+    const { email, password, branchId, name, role } = req.body;
 
     const attributeList = [];
 
@@ -59,6 +90,9 @@ async function register(req, res) {
                 return reject(handleError(err));
             }
             if (result) {
+                confirmUser(req, res).catch((err) => {
+                    reject(err);
+                });
                 res.status(200).json({ message: 'User registered successfully', status: 200 });
                 return resolve();
             }
