@@ -2,6 +2,7 @@ const express = require('express');
 const client = require('../db-client');
 const logger = require("../utils/logger");
 const AmazonCognitoIdentity = require('amazon-cognito-identity-js');
+const handleError = require('../utils/errorHandler');
 
 async function login(req, res) {
     const { email, password } = req.body;
@@ -55,10 +56,7 @@ async function register(req, res) {
     await new Promise((resolve, reject) => {
         userPool.signUp(email, password, attributeList, null, (err, result) => {
             if (err) {
-                return reject({
-                    message: err.message,
-                    status: 400
-                })
+                return reject(handleError(err));
             }
             if (result) {
                 res.status(200).json({ message: 'User registered successfully', status: 200 });
