@@ -1,14 +1,15 @@
 const express = require('express');
 const { list } = require('../controllers/branchController');
-/* const authMiddleware = require('../middleware/authMiddleware');
- */
+const authMiddleware = require('../middleware/authMiddleware');
+const asyncMiddleware = require('../middleware/asyncMiddleware');
+
 const router = express.Router();
 
 // Guard route
-/* router.use(authMiddleware); */
+router.use(authMiddleware);
 
 // List all branches
-router.get('/', list);
+router.get('/', asyncMiddleware(list));
 
 // View branch details
 // router.get('/:id', viewBranchDetails);
