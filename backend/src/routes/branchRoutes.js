@@ -6,13 +6,10 @@ const asyncMiddleware = require('../middleware/asyncMiddleware');
 const router = express.Router();
 
 // Guard route
-//router.use(authMiddleware);
+router.use(authMiddleware);
 
 // List all branches (Everyone)
 router.get('/', asyncMiddleware(listBranches));
-
-// Add new branch
-router.post('/', asyncMiddleware(addBranch));
 
 // Update branch details
 router.put('/:id', asyncMiddleware(editBranchDetails));
