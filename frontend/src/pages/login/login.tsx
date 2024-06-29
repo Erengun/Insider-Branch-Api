@@ -1,6 +1,5 @@
 import React from "react";
 import LoginComp from "./loginComp/loginComp";
-import RegisterComp from "./RegisterComp/registerComp";
 
 const Login: React.FC = () => {
 
