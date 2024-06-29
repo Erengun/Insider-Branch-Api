@@ -23,14 +23,14 @@ async function login(req, res) {
 
     const cognitoUser = new AmazonCognitoIdentity.CognitoUser(userData);
 
-    return new Promise((res, rej) => {
+    await new Promise((resolve, reject) => {
         cognitoUser.authenticateUser(authenticationDetails, {
             onSuccess: (result) => {
                 res.json({ accessToken: result.getAccessToken().getJwtToken() });
-                res();
+                resolve();
             },
             onFailure: (err) => {
-                rej({
+                reject({
                     message: err.message,
                     status: 401
                 })
@@ -40,6 +40,7 @@ async function login(req, res) {
 }
 
 async function register(req, res) {
+    // TODO: get other user informations
     const { email, password } = req.body;
 
     const attributeList = [];
@@ -47,24 +48,24 @@ async function register(req, res) {
     attributeList.push(new AmazonCognitoIdentity.CognitoUserAttribute({ Name: 'email', Value: email }));
 
     const userPool = new AmazonCognitoIdentity.CognitoUserPool({
-        UserPoolId: config.USER_POOL_ID,
-        ClientId: config.CLIENT_ID,
+        UserPoolId: process.env.COGNITO_USER_POOL_ID,
+        ClientId: process.env.COGNITO_CLIENT_ID,
     });
 
-    return new Promise((res, rej) => {
+    await new Promise((resolve, reject) => {
         userPool.signUp(email, password, attributeList, null, (err, result) => {
             if (err) {
-                return rej({
+                return reject({
                     message: err.message,
                     status: 400
                 })
             }
             if (result) {
                 res.status(200).json({ message: 'User registered successfully', status: 200 });
-                return res();
+                return resolve();
             }
 
-            rej({
+            reject({
                 message: "User couldn't save",
                 status: 500
             })
