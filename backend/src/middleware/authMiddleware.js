@@ -1,6 +1,14 @@
 
-const cognitoExpress = require('cognito-express')
+const CognitoExpress = require('cognito-express')
 const client = require('../db-client');
+
+const cognitoExpress = new CognitoExpress({
+    region: process.env.COGNITO_REGION,
+	cognitoUserPoolId: process.env.COGNITO_USER_POOL_ID,
+	tokenUse: "access", 
+	tokenExpiration: 3600000
+
+})
 
 module.exports = async (req, res, next) => {
     try {
