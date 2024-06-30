@@ -17,15 +17,22 @@ Project is currently live on http://mindhub.erengun.dev and you can try it with 
     - Email: eren@example.com
     - Password: Eroiscool.123
 
+Note: Due to time limitation, SSL certificate is not installed on the server so you have to connect using http protocol instead of https.
+
+## Architecture
+
+![Architecture Diagram](backend/docs/architecture.png)
+
 ## Use-Case Diagram
 
-![Use-Case Diagram](use-case-diagram.png)
+![Use-Case Diagram](backend/docs/algorithm.png)
 
 ## Database Diagram
 
-![Database Diagram](database-diagram.png)
+![Database Diagram](backend/docs/database.png)
 
-## Architecture
+
+## Technologies
 
 ### Backend (Node.js)
 
@@ -39,9 +46,10 @@ The frontend is built using React.js and Redux for state management. It provides
 
 The backend and frontend are deployed on Amazon EC2 instances. Docker is used to containerize the applications for easy deployment and management.
 
-#### Architecture Diagram
+### Amazon Cognito
 
-![Architecture Diagram](architecture-diagram.png)
+Amazon Cognito is used for user authentication. It provides a secure and scalable user directory that integrates with the backend API.
+
 
 ## Getting Started
 
@@ -74,15 +82,3 @@ The backend and frontend are deployed on Amazon EC2 instances. Docker is used to
         ```
 
     - Open your browser and navigate to `http://localhost:5173`
-
-## Environment Variables
-
-### Backend
-
-- `PORT`: The port number the backend server will run on.
-- `MONGO_URI`: The MongoDB connection URI.
-- `AWS_REGION`: The AWS region for Cognito.
-- `USER_POOL_ID`: The Cognito User Pool ID.
-- `CLIENT_ID`: The Cognito Client ID.
-
-
