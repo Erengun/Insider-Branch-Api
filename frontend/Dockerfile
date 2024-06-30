@@ -5,8 +5,7 @@ COPY package.json package-lock.json ./
 COPY . .
 
 RUN npm install
-RUN npm install -g http-server
-RUN npm run build
-CMD ["npx", "http-server", "./dist"]
+CMD ["npm", "run", "dev"]
 
 EXPOSE 8080
+

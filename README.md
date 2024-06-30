@@ -4,6 +4,19 @@
 
 This project is a Branch Management System that allows company owners to list, view, and edit branch information, while employees can only list and view branch information. The backend is built using Node.js, integrated with Amazon Cognito for authentication, and the frontend is built using React.js. The system follows SOLID principles to ensure a clean and maintainable codebase.
 
+
+### How can try this project?
+
+Project is currently live on http://mindhub.erengun.dev and you can try it with the following credentials:
+
+- Owner:
+  - Email: bob@example.com
+  - Password: Bobiscool.123
+
+- Employee:
+    - Email: eren@example.com
+    - Password: Eroiscool.123
+
 ## Use-Case Diagram
 
 ![Use-Case Diagram](use-case-diagram.png)
