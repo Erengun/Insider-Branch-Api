@@ -17,9 +17,9 @@ const LoginComp: React.FC = () => {
   const [showPassword, setShowPassword] = React.useState<boolean>(false);
 
   const handleLogin = async () => {
-    console.log(import.meta.env.VITE_BASE_URL);
+    console.log(import.meta.env.VITE_API_BASE);
     try {
-      const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/users/login`, {
+      const response = await axios.post(`${import.meta.env.VITE_API_BASE}/users/login`, {
         email: emailInputData,
         password: passwordInputData
       }, {

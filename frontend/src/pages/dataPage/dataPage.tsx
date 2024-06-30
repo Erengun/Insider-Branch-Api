@@ -37,7 +37,7 @@ const DataPage: React.FC = () => {
     const branch = data[editIndex as number]
     console.log(branch, " ", editIndex)
     try {
-      await axios.put(`${import.meta.env.VITE_BASE_URL}/branches/${branch.id}`, branch, {
+      await axios.put(`${import.meta.env.VITE_API_BASE}/branches/${branch.id}`, branch, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('access-token')}`
         },
@@ -76,7 +76,7 @@ const DataPage: React.FC = () => {
     }
 
     const fn = async () => {
-      await axios.get(`${import.meta.env.VITE_BASE_URL}/branches`, {
+      await axios.get(`${import.meta.env.VITE_API_BASE}/branches`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('access-token')}`
         }
