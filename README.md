@@ -45,18 +45,22 @@ The backend and frontend are deployed on Amazon EC2 instances. Docker is used to
     - Start the backend server:
 
         ```bash
+        cd backend
         npm start
         ```
+
+    - Open your browser and navigate to `http://localhost:3000`
 
 2. **Frontend:**
 
     - Start the frontend development server:
 
         ```bash
+        cd frontend
         npm start
         ```
 
-    - Open your browser and navigate to `http://localhost:3000`
+    - Open your browser and navigate to `http://localhost:5173`
 
 ## Environment Variables
 
