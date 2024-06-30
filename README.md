@@ -31,7 +31,6 @@ Note: Due to time limitation, SSL certificate is not installed on the server so 
 
 ![Database Diagram](backend/docs/database.png)
 
-
 ## Technologies
 
 ### Backend (Node.js)
