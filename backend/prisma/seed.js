@@ -46,89 +46,29 @@ async function main() {
 
   const allBranches = await prisma.branch.findMany();
 
-  // User verileri
-  await prisma.user.createMany({
-    data: [
-      {
-        name: 'Alice',
-        email: 'alice@example.com',
-        role: Role.USER,
-        branchId: allBranches[0].id,
-      },
-      {
-        name: 'Bob',
-        email: 'bob@example.com',
-        role: Role.OWNER,
-        branchId: allBranches[1].id,
-      },
-      {
-        name: 'Charlie',
-        email: 'charlie@example.com',
-        role: Role.USER,
-        branchId: allBranches[0].id,
-      },
-      {
-        name: 'David',
-        email: 'david@example.com',
-        role: Role.OWNER,
-        branchId: allBranches[2].id,
-      },
-      {
-        name: 'Eve',
-        email: 'eve@example.com',
-        role: Role.USER,
-        branchId: allBranches[3].id,
-      },
-      {
-        name: 'Frank',
-        email: 'frank@example.com',
-        role: Role.USER,
-        branchId: allBranches[4].id,
-      },
-      {
-        name: 'Grace',
-        email: 'grace@example.com',
-        role: Role.OWNER,
-        branchId: allBranches[1].id,
-      },
-      {
-        name: 'Heidi',
-        email: 'heidi@example.com',
-        role: Role.USER,
-        branchId: allBranches[2].id,
-      },
-      {
-        name: 'Ivan',
-        email: 'ivan@example.com',
-        role: Role.USER,
-        branchId: allBranches[3].id,
-      },
-      {
-        name: 'Judy',
-        email: 'judy@example.com',
-        role: Role.OWNER,
-        branchId: allBranches[4].id,
-      },
-      {
-        name: 'Mallory',
-        email: 'mallory@example.com',
-        role: Role.USER,
-        branchId: allBranches[0].id,
-      },
-      {
-        name: 'Oscar',
-        email: 'oscar@example.com',
-        role: Role.USER,
-        branchId: allBranches[1].id,
-      },
-      {
-        name: 'Peggy',
-        email: 'peggy@example.com',
-        role: Role.OWNER,
-        branchId: allBranches[2].id,
-      },
-    ],
-  });
+    // User verileri
+await prisma.user.createMany({
+  data: [
+    {
+      id: '400c593c-6041-7077-f90b-76dd27ff1e25',
+      name: 'Osman',
+      role: Role.USER,
+      branchId: allBranches[0].id,
+    },
+    {
+      id: 'c04c998c-d0c1-70a9-4113-b2e1ca710a0b',
+      name: 'Eren',
+      role: Role.OWNER,
+      branchId: allBranches[1].id,
+    },
+    {
+      id: 'f0fcf9bc-2081-70ee-73ef-99b6e734f136',
+      name: 'Bob',
+      role: Role.OWNER,
+      branchId: allBranches[2].id,
+    }
+  ],
+});
 
 
 }
