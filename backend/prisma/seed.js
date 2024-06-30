@@ -3,7 +3,7 @@ const { PrismaClient, Role } = require('@prisma/client');
 const prisma = new PrismaClient();
 
 async function main() {
-  // Branch verileri
+  // Dummy branch data for testing
   await prisma.branch.createMany({
     data: [
       {
@@ -44,33 +44,23 @@ async function main() {
     ],
   });
 
-  const allBranches = await prisma.branch.findMany();
-
-    // User verileri
-await prisma.user.createMany({
-  data: [
-    {
-      id: '400c593c-6041-7077-f90b-76dd27ff1e25',
-      name: 'Osman',
-      role: Role.USER,
-      branchId: allBranches[0].id,
-    },
-    {
-      id: 'c04c998c-d0c1-70a9-4113-b2e1ca710a0b',
-      name: 'Eren',
-      role: Role.OWNER,
-      branchId: allBranches[1].id,
-    },
-    {
-      id: 'f0fcf9bc-2081-70ee-73ef-99b6e734f136',
-      name: 'Bob',
-      role: Role.OWNER,
-      branchId: allBranches[2].id,
-    }
-  ],
-});
-
-
+  // Dummy user data for testing
+  await prisma.user.createMany({
+    data: [
+      // Employee User for Branch 1
+      {
+        id: '30dcf97c-00a1-70c6-06fd-2c1d1cd1845f',
+        name: 'Eren',
+        role: Role.USER,
+      },
+      // Owner User for Branch 2
+      {
+        id: 'f0fcf9bc-2081-70ee-73ef-99b6e734f136',
+        name: 'Bob',
+        role: Role.OWNER,
+      }
+    ],
+  });
 }
 
 main()

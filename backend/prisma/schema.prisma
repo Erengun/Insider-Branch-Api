@@ -16,8 +16,6 @@ model User {
     id       String @unique @id
     name     String
     role     Role
-    Branch   Branch @relation(fields: [branchId], references: [id])
-    branchId Int
 }
 
 model Branch {
@@ -27,5 +25,4 @@ model Branch {
     latitude     Decimal @db.Decimal(8, 6)
     longitude    Decimal @db.Decimal(9, 6)
     phone        String
-    users        User[]
 }
