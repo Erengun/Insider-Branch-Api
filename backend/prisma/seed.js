@@ -58,7 +58,7 @@ async function main() {
       {
         name: 'Bob',
         email: 'bob@example.com',
-        role: Role.ADMIN,
+        role: Role.OWNER,
         branchId: allBranches[1].id,
       },
       {
@@ -70,7 +70,7 @@ async function main() {
       {
         name: 'David',
         email: 'david@example.com',
-        role: Role.ADMIN,
+        role: Role.OWNER,
         branchId: allBranches[2].id,
       },
       {
@@ -88,7 +88,7 @@ async function main() {
       {
         name: 'Grace',
         email: 'grace@example.com',
-        role: Role.ADMIN,
+        role: Role.OWNER,
         branchId: allBranches[1].id,
       },
       {
@@ -106,7 +106,7 @@ async function main() {
       {
         name: 'Judy',
         email: 'judy@example.com',
-        role: Role.ADMIN,
+        role: Role.OWNER,
         branchId: allBranches[4].id,
       },
       {
@@ -124,7 +124,7 @@ async function main() {
       {
         name: 'Peggy',
         email: 'peggy@example.com',
-        role: Role.ADMIN,
+        role: Role.OWNER,
         branchId: allBranches[2].id,
       },
     ],
