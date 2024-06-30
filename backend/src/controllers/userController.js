@@ -22,11 +22,16 @@ async function login(req, res) {
         Pool: userPool,
     };
     const cognitoUser = new AmazonCognitoIdentity.CognitoUser(userData);
-
     await new Promise((resolve, reject) => {
         cognitoUser.authenticateUser(authenticationDetails, {
-            onSuccess: (result) => {
-                res.json({ accessToken: result.getAccessToken().getJwtToken() });
+            onSuccess: async (result) => {
+                const cognitoId = result.getIdToken().payload["cognito:username"]
+                const dbUser = await client.user.findFirst({
+                    where: {
+                        id: cognitoId
+                    }
+                })
+                res.json({ accessToken: result.getAccessToken().getJwtToken(), role: dbUser.role });
                 resolve();
             },
             onFailure: (err) => {
