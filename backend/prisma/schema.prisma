@@ -9,7 +9,7 @@ generator client {
 
 enum Role {
     USER
-    ADMIN
+    OWNER
 }
 
 model User {
