@@ -49,7 +49,7 @@ async function main() {
     data: [
       // Employee User for Branch 1
       {
-        id: '30dcf97c-00a1-70c6-06fd-2c1d1cd1845f',
+        id: '008c893c-00b1-70fd-ca1a-d5127e205308',
         name: 'Eren',
         role: Role.USER,
       },
