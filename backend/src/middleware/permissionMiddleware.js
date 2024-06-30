@@ -1,5 +1,13 @@
+/**
+ * Middleware function to check user permissions.
+ * Throws an error if the user is not authorized or does not have the required role.
+ *
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @param {Function} next - The next middleware function.
+ * @throws {Object} - Throws an error object with a message and status if the user is not authorized.
+ */
 const { Role } = require("@prisma/client");
-const logger = require("../utils/logger");
 
 module.exports = (req, res, next) => {
 	if (!req.user) {

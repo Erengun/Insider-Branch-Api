@@ -1,9 +1,13 @@
-const express = require('express');
 const client = require('../db-client');
-const logger = require("../utils/logger");
 const AmazonCognitoIdentity = require('amazon-cognito-identity-js');
 const handleError = require('../utils/incognitoErrorHandler');
 
+/**
+ * Handles user login.
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @returns {Promise<void>} - A promise that resolves when the login process is complete.
+ */
 async function login(req, res) {
     const { email, password } = req.body;
 
@@ -44,6 +48,12 @@ async function login(req, res) {
     })
 }
 
+/**
+ * Confirms user registration.
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @returns {Promise<void>} - A promise that resolves when the user registration is confirmed.
+ */
 async function confirmUser(req, res) {
     const { email, code } = req.body;
 
@@ -76,6 +86,12 @@ async function confirmUser(req, res) {
     })
 }
 
+/**
+ * Registers a new user.
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @returns {Promise<void>} - A promise that resolves when the user registration is complete.
+ */
 async function register(req, res) {
     // TODO: get other user informations
     const { email, password, branchId, name, role } = req.body;
@@ -109,7 +125,6 @@ async function register(req, res) {
         });
     })
 }
-
 
 module.exports = {
     login,

@@ -1,7 +1,13 @@
 
+/**
+ * Middleware function to authenticate requests using Cognito tokens.
+ * @param {import('express').Request} req - The Express request object.
+ * @param {import('express').Response} res - The Express response object.
+ * @param {import('express').NextFunction} next - The next middleware function.
+ * @returns {Promise<void>} - A Promise that resolves when the middleware is complete.
+ */
 const CognitoExpress = require('cognito-express')
 const client = require('../db-client');
-const logger = require("../utils/logger");
 
 const cognitoExpress = new CognitoExpress({
     region: process.env.COGNITO_REGION,
