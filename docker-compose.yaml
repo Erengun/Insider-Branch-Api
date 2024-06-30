@@ -1,0 +1,40 @@
+services:
+  mindhub-db:
+    image: mysql
+    container_name: mindhub-db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    volumes:
+      - local_mysql:/var/lib/mysql
+    networks:
+      - mindhub
+
+  mindhub-be:
+    depends_on:
+      - mindhub-db
+    restart: always
+    container_name: mindhub-be
+    env_file: ./backend/.env
+    build:
+      context: ./backend
+    ports:
+      - 3000:3000
+    networks:
+      - mindhub
+
+  mindhub-fe:
+    restart: always
+    container_name: mindhub-fe
+    env_file: ./frontend/.env
+    build:
+      context: ./frontend
+    ports:
+      - 8080:8080
+
+networks:
+  mindhub:
+    driver: bridge
+
+volumes:
+  local_mysql:

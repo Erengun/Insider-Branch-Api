@@ -5,8 +5,8 @@ COPY package.json package-lock.json ./
 COPY . .
 
 RUN npm install
-RUN npx prisma generate
+RUN npm install -g http-server
+RUN npm run build
+CMD ["npx", "http-server", "./dist"]
 
-CMD ["npm", "run", "start"]
-
-EXPOSE 3000
+EXPOSE 8080
